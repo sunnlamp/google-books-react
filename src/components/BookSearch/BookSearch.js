@@ -13,6 +13,10 @@ export default class BookSearch extends Component {
     });
   }
 
+  handleFormSubmit = event => {
+    event.preventDefault();
+  }
+
   render = () => {
     var { books } = this.state;
     return (
@@ -25,6 +29,11 @@ export default class BookSearch extends Component {
             value={this.state.bookQuery}
             onChange={this.handleInputChange}
           />
+          <button
+            onClick={this.handleFormSubmit}
+          >
+            Submit
+          </button>
         </form>
         <div>
           {!this.state.books.length ? (
