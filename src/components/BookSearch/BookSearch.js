@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 export default class BookSearch extends Component {
   state = {
-    bookQuery: '',
+    bookQuery: "",
     books: []
   }
 
@@ -14,9 +14,11 @@ export default class BookSearch extends Component {
   }
 
   render = () => {
+    var { books } = this.state;
     return (
       <div>
         <form>
+          <label>Book Search</label>
           <input
             id={'searchInput'}
             placeholder='Enter title or author'
@@ -24,6 +26,23 @@ export default class BookSearch extends Component {
             onChange={this.handleInputChange}
           />
         </form>
+        <div>
+          {!this.state.books.length ? (
+            <h1>No books to display, please enter an author or title.</h1>
+          ) : (
+              <ul>
+                {this.state.recipes.map(book => {
+                  return (
+                    <li
+                      key={book}
+                    >
+                    {book.title}
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+          </div>
       </div>
     )
   }
