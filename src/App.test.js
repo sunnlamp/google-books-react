@@ -1,9 +1,23 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { shallow } from 'enzyme'
 import App from './App';
+import BookSearch from './components/BookSearch/BookSearch';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
+describe('App', () => {
+  let wrapper;
+  beforeEach(() => wrapper = shallow(<App />));
+
+  it('should render correctly', () => {
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render a <div />', () => {
+    const wrapper = shallow(<App />);
+    expect(wrapper.find('div').length).toEqual(1);
+  });
+
+  it('should render the BookSearch component', () => {
+    expect(wrapper.containsMatchingElement(<BookSearch />)).toEqual(true);
+  })
+})
+
