@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
+import Form from '../Form/Form';
+import api from '../../utils/api';
 
 export default class BookSearch extends Component {
-  state = {
-    bookQuery: "",
-    books: []
+  constructor(props) {
+    super(props);
+    this.state = {
+      bookQuery: "",
+      books: []
+    }
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
+
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -15,32 +23,35 @@ export default class BookSearch extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
+    let { bookQuery } = this.state;
+    api.getBookData(bookQuery)
+    .then(response => {
+      console.log(response);
+    })
+  }
+
+  handleClearForm = event => {
+    event.preventDefault();
+    this.setState({
+      bookQuery: ""
+    })
   }
 
   render = () => {
     var { books } = this.state;
     return (
       <div>
-        <form>
-          <label>Book Search</label>
-          <input
-            id={'searchInput'}
-            placeholder='Enter title or author'
-            value={this.state.bookQuery}
-            onChange={this.handleInputChange}
-          />
-          <button
-            onClick={this.handleFormSubmit}
-          >
-            Submit
-          </button>
-        </form>
+        <Form 
+          bookQuery={this.bookQuery}
+          inputChange={this.handleInputChange}
+          formSubmit={this.handleFormSubmit}
+        />
         <div>
           {!this.state.books.length ? (
             <h1>No books to display, please enter an author or title.</h1>
           ) : (
               <ul>
-                {this.state.recipes.map(book => {
+                {this.state.books.map(book => {
                   return (
                     <li
                       key={book}
