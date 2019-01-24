@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Form from '../Form/Form';
+import BookList from '../BookList/BookList';
 import api from '../../utils/api';
 
 export default class BookSearch extends Component {
@@ -11,6 +12,7 @@ export default class BookSearch extends Component {
     }
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.handleClearForm = this.handleClearForm.bind(this);
   }
 
 
@@ -31,10 +33,12 @@ export default class BookSearch extends Component {
         books: data.items
       })
     })
+    .then(
+      this.handleClearForm()
+    )
   }
 
-  handleClearForm = event => {
-    event.preventDefault();
+  handleClearForm = () => {
     this.setState({
       bookQuery: ""
     })
@@ -50,26 +54,17 @@ export default class BookSearch extends Component {
           formSubmit={this.handleFormSubmit}
         />
         <div>
-          {!this.state.books.length ? (
-            <h1>No books to display, please enter an author or title.</h1>
-          ) : (
-              <ul>
-                {this.state.books.map(book => {
-                  return (
-                    <li
-                      key={book}
-                    >
-                    <p>{book.volumeInfo.authors[0]}</p>
-                    <p>{book.volumeInfo.title}</p>
-                    <p>{book.volumeInfo.publisher}</p>
-                    
-                    <a href={book.previewLink}>More info</a>
-                    </li>
-                  );
-                })}
-              </ul>
-            )}
-          </div>
+          {
+            !books.length ? (
+              <h1>No books to display, please enter an author or title.</h1>
+            ) : (
+              <BookList
+                books = {books}
+              />
+          )
+          }
+        </div>
+
       </div>
     )
   }
