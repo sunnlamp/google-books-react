@@ -47,7 +47,7 @@ export default class BookSearch extends Component {
   render = () => {
     var { books } = this.state;
     return (
-      <div>
+      <div className="container">
         <Form 
           bookQuery={this.bookQuery}
           inputChange={this.handleInputChange}

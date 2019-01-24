@@ -2,7 +2,7 @@ import React from 'react';
 
 const Form = ({ bookQuery, inputChange, formSubmit }) => (
   <form>
-    <label>Book Search</label>
+    <h2>Google Books API Search</h2>
     <input
       id={'searchInput'}
       placeholder='Enter title or author'
