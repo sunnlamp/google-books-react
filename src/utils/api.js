@@ -1,5 +1,5 @@
-require('dotenv').config();
-const API_KEY = 'AIzaSyADX-U9peAlDexET8i6qSyO3kIUm1_Tz-c';
+
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 export default {
   getBookData: function(query) {

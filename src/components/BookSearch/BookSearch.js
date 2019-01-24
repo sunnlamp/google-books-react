@@ -25,8 +25,11 @@ export default class BookSearch extends Component {
     event.preventDefault();
     let { bookQuery } = this.state;
     api.getBookData(bookQuery)
-    .then(response => {
-      console.log(response);
+    .then(response => response.json())
+    .then(data => {
+      this.setState({
+        books: data.items
+      })
     })
   }
 
@@ -56,7 +59,11 @@ export default class BookSearch extends Component {
                     <li
                       key={book}
                     >
-                    {book.title}
+                    <p>{book.volumeInfo.authors[0]}</p>
+                    <p>{book.volumeInfo.title}</p>
+                    <p>{book.volumeInfo.publisher}</p>
+                    
+                    <a href={book.previewLink}>More info</a>
                     </li>
                   );
                 })}
@@ -75,3 +82,9 @@ export default class BookSearch extends Component {
 // information about the book, but this information does not necessarily
 // need to appear on a page within your application.In other words,
 // this could link out to an external site with more information about that particular book.
+// items[0].volumeInfo.authors[0] -- authors
+// items[0].volumeInfo.title
+// items[0].volumeInfo.publisher
+// items[0].imageLinks.thumbnail or smallThumbnail
+// items[0].canonicalVolumeLink -- link
+// items[0].previewLink
