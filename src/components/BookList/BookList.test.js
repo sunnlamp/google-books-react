@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import BookList from './BookList';
 import BookListItem from '../BookListItem/BookListItem';
 import { data } from '../../utils/data';
