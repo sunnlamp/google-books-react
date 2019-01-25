@@ -29,6 +29,8 @@ export default class BookSearch extends Component {
     api.getBookData(bookQuery)
     .then(response => response.json())
     .then(data => {
+      console.log(data);
+      
       this.setState({
         books: data.items
       })
