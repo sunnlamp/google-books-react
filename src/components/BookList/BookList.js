@@ -3,10 +3,10 @@ import BookListItem from '../BookListItem/BookListItem';
 
 const BookList = ({ books }) => {
   return (
-    <div>
+    <div className="books-container">
       {books.map(book => {
         return (
-          < BookListItem
+          <BookListItem
             key={book.etag}
             author={book.volumeInfo.authors}
             title={book.volumeInfo.title  }
