@@ -15,10 +15,12 @@ This is an exercise for 8th Light's apprenticeship program. The purpose of this 
 
 To run the project locally, you can take the following steps:
 
-* git clone git@github.com:sunnlamp/google-books-react.git
-* cd google-books-react
-* yarn install
-* yarn start
+```
+git clone git@github.com:sunnlamp/google-books-react.git
+cd google-books-react
+yarn install
+yarn start
+```
 
 ## Available Scripts
 
