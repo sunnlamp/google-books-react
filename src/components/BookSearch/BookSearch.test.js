@@ -1,6 +1,9 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import BookSearch from './BookSearch';
+import Form from '../Form/Form';
+import BookList from '../BookList/BookList';
+import data from '../../utils/data.json';
 
 describe('BookSearch', () => {
   let wrapper;
@@ -9,15 +12,15 @@ describe('BookSearch', () => {
   it('should render correctly', () => expect(wrapper).toMatchSnapshot());
 
   it('should render a <div />', () => {
-    expect(wrapper.find('div').length).toEqual(2);
+    expect(wrapper.find('div').length).toEqual(1);
   });
 
-  it('should display a form with a input', () => {
+  it('should display the Form component', () => {
+    wrapper.setState({ books: ["Dune", "Dune", "Dune"] });
     expect(wrapper.containsAllMatchingElements([
-      <form>
-        <input />
-      </form>
-    ]))
+      <Form />,
+      <BookList />
+    ])).toEqual(true);
   })
 });
 
@@ -25,12 +28,26 @@ describe('mounted BookSearch', () => {
   let wrapper;
   beforeEach(() => wrapper = mount(<BookSearch />));
 
-  // it('calls handleInputChange when a value is entered', () => {
-  //   const spy = jest.spyOn(wrapper.instance(), 'handleInputChange');
-  //   const input = wrapper.find('input').simulate('click');
-  //   input.value = "Harry Potter";
-  //   input.simulate('change', input);
-  //   expect(spy.called).toEqual(String);
-  //   spy.mockRestore();
-  // });
+  it('calls handleInputChange when text is entered', () => {
+    const handleInputChangeSpy = jest.spyOn(wrapper.instance(), 'handleInputChange');
+    const input = wrapper.find('input');
+    wrapper.instance().forceUpdate();
+    input.value = 'Dune';
+    input.simulate('change');
+    expect(handleInputChangeSpy).toHaveBeenCalled();
+    // expect toHaveBeencalledWith('Dune') fails
+    // by expecting String and receiving object
+    // that assertion would be better for testing
+    // but unsure how to correct the issue
+  });
+
+  it('calls handleFormSubmit when the button is pressed', () => {
+    const handleFormSubmitSpy = jest.spyOn(wrapper.instance(), 'handleFormSubmit');
+    const button = wrapper.find('button');
+    wrapper.instance().forceUpdate();
+    expect(handleFormSubmitSpy).not.toHaveBeenCalled();
+    button.simulate('click');
+    expect(handleFormSubmitSpy).toHaveBeenCalled();
+
+  })
 });
