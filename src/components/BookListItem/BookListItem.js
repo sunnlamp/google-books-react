@@ -1,10 +1,10 @@
 import React from 'react';
 
-const BookListItem = ({ key, author, title, publisher,
+const BookListItem = ({ id, author, title, publisher,
                         smallThumbnail, infoLink }) => {
   return (
     <div
-      key={key}
+      key={id}
       className="book-item-container"
     >
       <img className="book-image" src={smallThumbnail} alt="" />

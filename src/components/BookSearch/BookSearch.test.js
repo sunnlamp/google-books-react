@@ -3,7 +3,7 @@ import { mount, shallow } from 'enzyme';
 import BookSearch from './BookSearch';
 import Form from '../Form/Form';
 import BookList from '../BookList/BookList';
-import data from '../../utils/data.json';
+import data from '../../utils/data';
 
 describe('BookSearch', () => {
   let wrapper;
@@ -19,7 +19,9 @@ describe('BookSearch', () => {
     wrapper.setState({ books: ["Dune", "Dune", "Dune"] });
     expect(wrapper.containsAllMatchingElements([
       <Form />,
-      <BookList />
+      <BookList 
+        books={data}
+      />
     ])).toEqual(true);
   })
 });
@@ -48,6 +50,5 @@ describe('mounted BookSearch', () => {
     expect(handleFormSubmitSpy).not.toHaveBeenCalled();
     button.simulate('click');
     expect(handleFormSubmitSpy).toHaveBeenCalled();
-
   })
 });

@@ -8,6 +8,7 @@ const BookList = ({ books }) => {
         return (
           <BookListItem
             key={book.etag}
+            id={book.etag}
             author={book.volumeInfo.authors}
             title={book.volumeInfo.title  }
             publisher={book.volumeInfo.publisher}
