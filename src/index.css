@@ -80,3 +80,32 @@ button {
 .book-detail {
   font-weight: bold;
 }
+
+@media screen and (min-width: 375px) {
+  .container {
+    padding: 5px;
+  }
+
+  .container h2 {
+    padding-left: 1rem;
+  }
+  
+  form {
+    padding-left: 1rem;
+    width: 80%;
+  }
+
+  .book-item-container {
+    display: flex;
+    width: 75%;
+    background-color: bisque;
+    border-radius: 3px;
+     
+  }
+
+  .book-image {
+    object-fit: contain;
+    padding-right: .75rem;
+    margin-right: .25rem;
+  }
+}
