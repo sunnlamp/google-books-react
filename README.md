@@ -4,11 +4,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 This is an exercise for 8th Light's apprenticeship program. The purpose of this application is as follows:
 
-⋅⋅* To allow a user to type in a query.
-⋅⋅* The query will then display a list of books match the query.
-⋅⋅* Each item in the list includes the book's author, title, publishing company, and a picture of the book.
-⋅⋅* Each list item allows the user to navigate to more information about the book.
+* To allow a user to type in a query.
+* The query will then display a list of books match the query.
+* Each item in the list includes the book's author, title, publishing company, and a picture of the book.
+* Each list item allows the user to navigate to more information about the book.
 
+[You can visit the project here.](https://floating-sands-15463.herokuapp.com/)
 
 ## Available Scripts
 
