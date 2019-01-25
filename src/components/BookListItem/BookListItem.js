@@ -3,15 +3,20 @@ import React from 'react';
 const BookListItem = ({ key, author, title, publisher,
                         smallThumbnail, infoLink }) => {
   return (
-    <li
+    <div
       key={key}
+      className="book-item-container"
     >
-      <p>{author}</p>
-      <p>{title}</p>
-      <p>{publisher}</p>
-      <p><img src={smallThumbnail} alt="" /></p>
-      <p><a target="_blank" rel="noopener noreferrer" href={infoLink} >More info</a></p>
-    </li>
+      <img className="book-image" src={smallThumbnail} alt="" />
+      <div className="book-description">
+        <span>
+          <p>Title: <span className="book-detail">{title}</span></p>
+          <p>Written by: <span className="book-detail">{author}</span></p>
+          <p>Publisher: <span className="book-detail">{publisher}</span></p>
+          <a target="_blank" rel="noopener noreferrer" href={infoLink} >More info</a>
+        </span>
+      </div>
+    </div>
   )
 }
 

@@ -2,7 +2,6 @@ import React from 'react';
 
 const Form = ({ bookQuery, inputChange, formSubmit }) => (
   <form>
-    <h2>Google Books API Search</h2>
     <input
       id={'searchInput'}
       placeholder='Enter title or author'
@@ -13,7 +12,7 @@ const Form = ({ bookQuery, inputChange, formSubmit }) => (
     <button
       onClick={formSubmit}
     >
-      Submit
+      <span id="submitButton">Submit</span>
     </button>
   </form>
 );

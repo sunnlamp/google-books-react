@@ -6,6 +6,21 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: azure;
+}
+
+a {
+  text-decoration: none;
+  color: blue;
+  font-weight: 500;
+}
+
+a:hover {
+  cursor: pointer;
+}
+
+li {
+  list-style: none;
 }
 
 .container {
@@ -16,24 +31,39 @@ body {
   display: block;
 }
 
+/* BookSearch */
+
 #searchInput {
   width: 45%;
   padding: .75rem 1rem;
-  margin: 1rem;
+  margin: .15rem;
   -webkit-border-radius: 5px;
   border-radius: 5px;
   font-size: 1rem;
 }
 
-a {
-  text-decoration: none;
-  color: black;
+/* BookListItem */
+
+.book-item-container {
+  display: flex;
+  width: 25%;
+  background-color: bisque;
+  border-radius: 3px;
+  padding: 1rem 1rem;
+  margin: 1rem; 
 }
 
-a:hover {
-  cursor: pointer;
+.book-image {
+  object-fit: contain;
+  align-self: flex-start;
+  padding-right: .75rem;
+  margin-right: .25rem; 
 }
 
-li {
-  list-style: none;
+.book-description {
+  flex: 1 1 auto;
+}
+
+.book-detail {
+  font-weight: bold;
 }

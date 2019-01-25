@@ -3,19 +3,20 @@ import BookListItem from '../BookListItem/BookListItem';
 
 const BookList = ({ books }) => {
   return (
-    <ul>
+    <div>
       {books.map(book => {
         return (
           < BookListItem
             key={book.etag}
             author={book.volumeInfo.authors}
+            title={book.volumeInfo.title  }
             publisher={book.volumeInfo.publisher}
             smallThumbnail={book.volumeInfo.imageLinks.smallThumbnail}
             infoLink={book.volumeInfo.infoLink}
           />
         );
       })}
-    </ul>
+    </div>
   )
 }
 

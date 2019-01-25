@@ -48,23 +48,21 @@ export default class BookSearch extends Component {
     var { books } = this.state;
     return (
       <div className="container">
+        <h2>Google Books API Search</h2>
         <Form 
           bookQuery={this.bookQuery}
           inputChange={this.handleInputChange}
           formSubmit={this.handleFormSubmit}
         />
-        <div>
-          {
-            !books.length ? (
-              <h1>No books to display, please enter an author or title.</h1>
-            ) : (
-              <BookList
-                books = {books}
-              />
-          )
-          }
-        </div>
-
+        {
+          !books.length ? (
+            <h2>No books to display, please enter an author or title.</h2>
+          ) : (
+            <BookList
+              books = {books}
+            />
+        )
+        }
       </div>
     )
   }
@@ -77,9 +75,3 @@ export default class BookSearch extends Component {
 // information about the book, but this information does not necessarily
 // need to appear on a page within your application.In other words,
 // this could link out to an external site with more information about that particular book.
-// items[0].volumeInfo.authors[0] -- authors
-// items[0].volumeInfo.title
-// items[0].volumeInfo.publisher
-// items[0].imageLinks.thumbnail or smallThumbnail
-// items[0].canonicalVolumeLink -- link
-// items[0].previewLink
