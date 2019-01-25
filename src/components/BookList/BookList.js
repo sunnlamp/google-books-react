@@ -2,42 +2,27 @@ import React from 'react';
 import BookListItem from '../BookListItem/BookListItem';
 
 const BookList = ({ books }) => {
+  let author, publisher, smallThumbnail;
   return (
     <div className="books-container">
       {books.map(book => {
         if (!book.volumeInfo.authors) {
-          return (
-            <BookListItem
-              key={book.etag}
-              id={book.etag}
-              author={"No author available"}
-              title={book.volumeInfo.title}
-              publisher={book.volumeInfo.publisher}
-              smallThumbnail={book.volumeInfo.imageLinks.smallThumbnail}
-              infoLink={book.volumeInfo.infoLink}
-            />
-          )
+          author = "No author available."
         } else if (book.volumeInfo.authors.length > 1) {
-          let authors = book.volumeInfo.authors.join(' & ');
-          return (
-            <BookListItem
-              key={book.etag}
-              id={book.etag}
-              author={authors}
-              title={book.volumeInfo.title}
-              publisher={book.volumeInfo.publisher}
-              smallThumbnail={book.volumeInfo.imageLinks.smallThumbnail}
-              infoLink={book.volumeInfo.infoLink}
-            />
-          )
+          author = book.volumeInfo.authors.join(" & ");
+        } else {
+          author = book.volumeInfo.authors[0];
         }
+        
+        publisher = (!book.volumeInfo.publisher ? "No publisher available" : book.volumeInfo.publisher)
+        
         return (
           <BookListItem
             key={book.etag}
             id={book.etag}
-            author={book.volumeInfo.authors}
+            author={author}
             title={book.volumeInfo.title}
-            publisher={book.volumeInfo.publisher}
+            publisher={publisher}
             smallThumbnail={book.volumeInfo.imageLinks.smallThumbnail}
             infoLink={book.volumeInfo.infoLink}
           />
