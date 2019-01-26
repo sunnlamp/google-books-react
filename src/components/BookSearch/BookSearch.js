@@ -32,11 +32,6 @@ export default class BookSearch extends Component {
         books: data.items
       })
     })
-    .then(
-      this.setState({
-        bookQuery: ""
-      })
-    )
   }
 
   render = () => {
