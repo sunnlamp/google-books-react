@@ -1,5 +1,6 @@
 import React from 'react';
 import BookListItem from '../BookListItem/BookListItem';
+import noImageAvailable from '../../assets/image-unavailable.jpg';
 
 const BookList = ({ books }) => {
   let author, publisher, smallThumbnail;
@@ -16,14 +17,15 @@ const BookList = ({ books }) => {
         
         publisher = (!book.volumeInfo.publisher ? "No publisher available" : book.volumeInfo.publisher)
         
+        smallThumbnail = (book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.smallThumbnail : noImageAvailable)
         return (
           <BookListItem
-            key={book.etag}
+            key={book.etag}image
             id={book.etag}
             author={author}
             title={book.volumeInfo.title}
             publisher={publisher}
-            smallThumbnail={book.volumeInfo.imageLinks.smallThumbnail}
+            smallThumbnail={smallThumbnail}
             infoLink={book.volumeInfo.infoLink}
           />
         );

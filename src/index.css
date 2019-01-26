@@ -70,7 +70,8 @@ button {
   object-fit: contain;
   align-self: flex-start;
   padding-right: .75rem;
-  margin-right: .25rem; 
+  margin-right: .25rem;
+  width: 166px;
 }
 
 .book-description {
