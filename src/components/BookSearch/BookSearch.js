@@ -28,22 +28,16 @@ export default class BookSearch extends Component {
     let { bookQuery } = this.state;
     api.getBookData(bookQuery)
     .then(response => response.json())
-    .then(data => {
-      console.log(data);
-      
+    .then(data => {     
       this.setState({
         books: data.items
       })
     })
     .then(
-      this.handleClearForm()
+      this.setState({
+        bookQuery: ""
+      })
     )
-  }
-
-  handleClearForm = () => {
-    this.setState({
-      bookQuery: ""
-    })
   }
 
   render = () => {
