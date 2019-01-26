@@ -12,7 +12,6 @@ export default class BookSearch extends Component {
     }
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    this.handleClearForm = this.handleClearForm.bind(this);
   }
 
 
