@@ -15,7 +15,7 @@ const BookList = ({ books }) => {
           author = book.volumeInfo.authors[0];
         }
         
-        publisher = (!book.volumeInfo.publisher ? "No publisher available" : book.volumeInfo.publisher)
+        publisher = (book.volumeInfo.publisher ? book.volumeInfo.publisher : "No publisher available")
         
         smallThumbnail = (book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.smallThumbnail : noImageAvailable)
         return (
