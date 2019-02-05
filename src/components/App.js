@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import BookSearch from './components/BookSearch/BookSearch';
+import BookSearch from './BookSearch';
 
 class App extends Component {
   render() {

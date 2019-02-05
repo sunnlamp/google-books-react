@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme'
-import App from '../../src/App';
-import BookSearch from '../../src/components/BookSearch/BookSearch';
+import App from '../components/App';
+import BookSearch from '../components/BookSearch';
 
 describe('App', () => {
   let wrapper;

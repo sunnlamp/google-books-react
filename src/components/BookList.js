@@ -1,6 +1,6 @@
 import React from 'react';
-import BookListItem from '../BookListItem/BookListItem';
-import noImageAvailable from '../../assets/image-unavailable.jpg';
+import BookListItem from './BookListItem';
+import noImageAvailable from '../assets/image-unavailable.jpg';
 
 const BookList = ({ books }) => {
   let author, publisher, smallThumbnail;

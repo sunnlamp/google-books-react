@@ -1,8 +1,8 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import BookList from '../../src/components/BookList/BookList';
-import BookListItem from '../../src/components/BookListItem/BookListItem';
-import { data } from '../../src/utils/mockBookData';
+import BookList from '../components/BookList';
+import BookListItem from '../components/BookListItem';
+import { data } from '../utils/mockBookData';
 
 describe('BookList', () => {
   let wrapper;

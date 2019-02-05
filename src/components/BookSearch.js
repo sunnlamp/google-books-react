@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Form from '../Form/Form';
-import BookList from '../BookList/BookList';
-import api from '../../utils/api';
+import Form from './Form';
+import BookList from './BookList';
+import api from '../utils/api';
 
 export default class BookSearch extends Component {
   constructor(props) {
