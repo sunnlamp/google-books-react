@@ -1,9 +1,9 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import BookSearch from './BookSearch';
-import Form from '../Form/Form';
-import BookList from '../BookList/BookList';
-import data from '../../utils/data';
+import BookSearch from '../../src/components/BookSearch/BookSearch';
+import Form from '../../src/components/Form/Form';
+import BookList from '../../src/components/BookList/BookList';
+import data from '../../src/utils/mockBookData';
 
 describe('BookSearch', () => {
   let wrapper;
