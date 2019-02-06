@@ -22,6 +22,16 @@ yarn install
 yarn start
 ```
 
+If you don't want a browser to pop up on dev server start, use the following start option:
+```
+BROWSER=none yarn start
+```
+
+Or add the following to your .env file:
+```
+BROWSER=none
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
