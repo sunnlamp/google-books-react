@@ -98,12 +98,6 @@ button {
   }
 }
 
-@media screen and (max-width: 768px) {
-  .book-item-container {
-    width: 35%;
-  }
-}
-
 @media screen and (max-width: 480px) {
   .container {
     padding: 5px;
