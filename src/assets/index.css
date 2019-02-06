@@ -30,7 +30,15 @@ li {
   justify-content:space-between
 }
 
+h2 {
+  padding-left: 1rem;
+}
+
 /* BookSearch */
+
+form {
+  padding-left: 1rem;
+}
 
 #searchInput {
   width: 45%;
@@ -68,10 +76,9 @@ button {
 
 .book-image {
   object-fit: contain;
-  align-self: flex-start;
   padding-right: .75rem;
   margin-right: .25rem;
-  width: 166px;
+  width: 55%;
 }
 
 .book-description {
@@ -85,9 +92,15 @@ button {
 @media screen and (max-width: 768px) {
   .book-item-container {
     display: flex;
-    width: 40%;
-    background-color: bisque;
-    border-radius: 3px;
+    width: 38%;
+    padding: .75rem .75rem;
+    margin: .5rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .book-item-container {
+    width: 35%;
   }
 }
 
