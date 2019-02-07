@@ -3,10 +3,12 @@ import { mount, shallow } from 'enzyme';
 import BookSearch from '../components/BookSearch';
 import Form from '../components/Form';
 import BookList from '../components/BookList';
-import data from '../utils/mockBookData';
+import { mockBookData } from '../utils/mockBookData';
+import BookListItem from '../components/BookListItem';
+import api from '../utils/api';
 
 describe('BookSearch', () => {
-  let wrapper;
+  let wrapper;  
   beforeEach(() => wrapper = shallow(<BookSearch />));
 
   it('should render correctly', () => expect(wrapper).toMatchSnapshot());
@@ -15,15 +17,15 @@ describe('BookSearch', () => {
     expect(wrapper.find('div').length).toEqual(1);
   });
 
-  it('should display the Form component', () => {
-    wrapper.setState({ books: ["Dune", "Dune", "Dune"] });
+  it('should display the Form and BookList component', () => {
+    wrapper.setState({ books: mockBookData });
     expect(wrapper.containsAllMatchingElements([
       <Form />,
       <BookList 
-        books={data}
+        books={mockBookData}
       />
     ])).toEqual(true);
-  })
+  })  
 });
 
 describe('mounted BookSearch', () => {
@@ -51,4 +53,66 @@ describe('mounted BookSearch', () => {
     button.simulate('click');
     expect(handleFormSubmitSpy).toHaveBeenCalled();
   })
+});
+
+// Sad path
+// describe('when `books` is undefined', () => {
+//   let wrapper;
+//   beforeEach(() => wrapper = mount(<BookSearch />));
+
+//   it('render a <h2 /> element', () => {
+//     wrapper.setState({ books: null});
+//     wrapper.update();
+//     expect(wrapper.state('books')).toEqual(null);
+//     expect(wrapper.containsAllMatchingElements([
+//       <h2>No books to display, please enter an author or title.</h2>,
+//       <h2>No results!</h2>
+//     ])).toEqual(true);
+//   });
+// });
+
+describe('successful fetch request', () => {
+  let wrapper;
+  beforeEach(() => wrapper = shallow(<BookSearch />));
+
+  it('sets the state of books', async () => {
+    jest.fn().mockImplementation()
+    .then(mockBookData => mockBookData.json())
+    .then(mockBookData => {
+      wrapper.setState({
+        books: mockBookData
+      })
+    })
+    .catch(error => {
+      console.log('Error: ', error);
+      this.setState({
+        error: true
+      })
+    });
+
+    await wrapper.update();
+    expect(wrapper.state('books').length).toEqual(2);
+  });
+});
+
+describe('when `books` is defined', () => {
+  let wrapper;
+  beforeEach(() => wrapper = mount(<BookSearch />));
+
+  it('renders the <BookList /> component', () => {
+    wrapper.setState({ books: mockBookData });
+    wrapper.update();
+    expect(wrapper.state('books')).toEqual(mockBookData);
+    expect(wrapper.containsMatchingElement(<BookList books={wrapper.props.books} />));
+  });
+
+  it('render as many <BookListItem /> components as the data contains', () => {
+    wrapper.setState({ books: mockBookData });
+    wrapper.update();
+    expect(wrapper.state('books').length).toEqual(2);
+    expect(wrapper.containsAllMatchingElements([
+      <BookListItem />,
+      <BookListItem />
+    ])).toEqual(true);
+  });
 });

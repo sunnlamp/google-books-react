@@ -1,5 +1,5 @@
 // dummy data
-export const data = [
+export const mockBookData = [
   {
     etag: "2t3oSSU9Pwc1",
     volumeInfo: {

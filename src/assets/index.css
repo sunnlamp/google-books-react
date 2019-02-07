@@ -30,7 +30,7 @@ li {
   justify-content:space-between
 }
 
-h2 {
+.container h2 {
   padding-left: 1rem;
 }
 
@@ -78,7 +78,7 @@ button {
   object-fit: contain;
   padding-right: .75rem;
   margin-right: .25rem;
-  width: 55%;
+  width: 45%;
 }
 
 .book-description {
@@ -87,6 +87,7 @@ button {
 
 .book-detail {
   font-weight: bold;
+  padding: 0;
 }
 
 @media screen and (max-width: 768px) {

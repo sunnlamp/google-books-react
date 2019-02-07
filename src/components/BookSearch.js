@@ -8,7 +8,8 @@ export default class BookSearch extends Component {
     super(props);
     this.state = {
       bookQuery: "",
-      books: []
+      books: [],
+      error: false
     }
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -24,7 +25,7 @@ export default class BookSearch extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    let { bookQuery } = this.state;
+    let { bookQuery } = this.state;  
     api.getBookData(bookQuery)
     .then(response => response.json())
     .then(data => {     
@@ -32,10 +33,16 @@ export default class BookSearch extends Component {
         books: data.items
       })
     })
+    .catch(error => {
+      console.log('Error: ', error);
+      this.setState({
+        error: true
+      })
+    });
   }
 
   render = () => {
-    var { books } = this.state;
+    var { books, error } = this.state;
     return (
       <div className="container">
         <h2>Google Books API Search</h2>
@@ -45,13 +52,14 @@ export default class BookSearch extends Component {
           formSubmit={this.handleFormSubmit}
         />
         {
-          !books.length ? (
+          books != null && !books.length && !error ? (
             <h2>No books to display, please enter an author or title.</h2>
           ) : (
             <BookList
-              books = {books}
+              books={books}
+              error={error}
             />
-        )
+          )
         }
       </div>
     )

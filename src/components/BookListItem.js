@@ -10,10 +10,13 @@ const BookListItem = ({ id, author, title, publisher,
       <img className="book-image" src={smallThumbnail} alt="" />
       <div className="book-description">
         <span>
-          <p>Title: <span className="book-detail">{title}</span></p>
+          <h3 className="book-title">
+            <a target="_blank" className="book-detail" rel="noopener noreferrer" href={infoLink}>
+              {title}
+            </a>
+          </h3>
           <p>Written by: <span className="book-detail">{author}</span></p>
           <p>Publisher: <span className="book-detail">{publisher}</span></p>
-          <a target="_blank" rel="noopener noreferrer" href={infoLink} >More info</a>
         </span>
       </div>
     </div>

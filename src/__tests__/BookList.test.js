@@ -2,11 +2,11 @@ import React from 'react';
 import { mount } from 'enzyme';
 import BookList from '../components/BookList';
 import BookListItem from '../components/BookListItem';
-import { data } from '../utils/mockBookData';
+import { mockBookData } from '../utils/mockBookData';
 
 describe('BookList', () => {
   let wrapper;
-  beforeEach(() => wrapper = mount(<BookList books={data} />));
+  beforeEach(() => wrapper = mount(<BookList books={mockBookData} />));
 
   it('should render correctly', () => expect(wrapper).toMatchSnapshot());
 
