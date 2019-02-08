@@ -19,13 +19,9 @@ export default class BookSearch extends Component {
 
   handleInputChange = event => {
     const { name, value } = event.target;
-    if (event.value === "") {
-
-    } else {
-      this.setState({
-        [name]: value
-      });  
-    }
+    this.setState({
+       [name]: value
+    });  
   }
 
   handleFormSubmit = event => {
