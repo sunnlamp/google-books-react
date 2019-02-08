@@ -2,7 +2,7 @@ import React from 'react';
 import BookListItem from './BookListItem';
 import noImageAvailable from '../assets/image-unavailable.jpg';
 
-const BookList = ({ books, error }) => {
+const BookList = (books) => {
   let author, publisher, smallThumbnail;
   return (
     <div className="books-container">
