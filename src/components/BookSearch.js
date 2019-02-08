@@ -9,7 +9,9 @@ export default class BookSearch extends Component {
     this.state = {
       bookQuery: "",
       books: [],
-      error: false
+      errorMessage:"",
+      statusMessage:"No books to display, please enter an author or title.",
+      ajaxErrorCode: ""
     }
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -18,31 +20,35 @@ export default class BookSearch extends Component {
 
   handleInputChange = event => {
     const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
+    if (event.value === "") {
+
+    } else {
+      this.setState({
+        [name]: value
+      });  
+    }
   }
 
   handleFormSubmit = event => {
     event.preventDefault();
     let { bookQuery } = this.state;  
-    api.getBookData(bookQuery)
-    .then(response => response.json())
-    .then(data => {     
+    if (bookQuery !== "") {
+      api.getBookData(bookQuery)
+      .then(response => response.json())
+      .then(data => {
+        this.setState({
+          books: data.items
+        })
+      });
+    } else {
       this.setState({
-        books: data.items
-      })
-    })
-    .catch(error => {
-      console.log('Error: ', error);
-      this.setState({
-        error: true
-      })
-    });
+        statusMessage: "Please enter an author or title!"
+      });
+    }
   }
 
   render = () => {
-    var { books, error } = this.state;
+    var { books, statusMessage } = this.state;
     return (
       <div className="container">
         <h2>Google Books API Search</h2>
@@ -52,12 +58,11 @@ export default class BookSearch extends Component {
           formSubmit={this.handleFormSubmit}
         />
         {
-          books != null && !books.length && !error ? (
-            <h2>No books to display, please enter an author or title.</h2>
+          books !== null && !books.length ? (
+            <h2>{statusMessage}</h2>
           ) : (
             <BookList
               books={books}
-              error={error}
             />
           )
         }

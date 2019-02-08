@@ -4,38 +4,32 @@ import noImageAvailable from '../assets/image-unavailable.jpg';
 
 const BookList = ({ books, error }) => {
   let author, publisher, smallThumbnail;
-  if (error && books.length === 0 || books === null) {
-    return (
-      <h2 id="no-results">No results!</h2>
-    )
-  } else {
-    return (
-      <div className="books-container">
-        {books.map(book => {
-          if (!book.volumeInfo.authors) {
-            author = "No author available."
-          } else if (book.volumeInfo.authors.length > 1) {
-            author = book.volumeInfo.authors.join(" & ");
-          } else {
-            author = book.volumeInfo.authors[0];
-          }
-          publisher = (book.volumeInfo.publisher ? book.volumeInfo.publisher : "No publisher available")
-          smallThumbnail = (book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.smallThumbnail : noImageAvailable)
-          return (
-            <BookListItem
-              key={book.etag} image
-              id={book.etag}
-              author={author}
-              title={book.volumeInfo.title}
-              publisher={publisher}
-              smallThumbnail={smallThumbnail}
-              infoLink={book.volumeInfo.infoLink}
-            />
-          );
-        })}
-      </div>
-    )    
-  }
+  return (
+    <div className="books-container">
+      {books.map(book => {
+        if (!book.volumeInfo.authors) {
+          author = "No author available."
+        } else if (book.volumeInfo.authors.length > 1) {
+          author = book.volumeInfo.authors.join(" & ");
+        } else {
+          author = book.volumeInfo.authors[0];
+        }
+        publisher = (book.volumeInfo.publisher ? book.volumeInfo.publisher : "No publisher available")
+        smallThumbnail = (book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.smallThumbnail : noImageAvailable)
+        return (
+          <BookListItem
+            key={book.etag} image
+            id={book.etag}
+            author={author}
+            title={book.volumeInfo.title}
+            publisher={publisher}
+            smallThumbnail={smallThumbnail}
+            infoLink={book.volumeInfo.infoLink}
+          />
+        );
+      })}
+    </div>
+  )    
 }
 
 export default BookList;

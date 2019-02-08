@@ -73,25 +73,28 @@ describe('mounted BookSearch', () => {
 
 describe('successful fetch request', () => {
   let wrapper;
-  beforeEach(() => wrapper = shallow(<BookSearch />));
+  let mockEvent;
+  let mockUpdateBooksList;
+  let mockBooks;
+  
+  beforeEach(() => {
+    mockEvent = { preventDefault: jest.fn() };
+    mockUpdateBooksList = jest.fn();
+    mockBooks = mockBookData;
+    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+      json: () => Promise.resolve({
+        books: mockBooks
+      })
+    }));
+    wrapper = shallow(<BookSearch />);
+  });
 
   it('sets the state of books', async () => {
-    jest.fn().mockImplementation()
-    .then(mockBookData => mockBookData.json())
-    .then(mockBookData => {
-      wrapper.setState({
-        books: mockBookData
-      })
+    wrapper.forceUpdate();
+    wrapper.instance().handleFormSubmit(mockEvent)
+    .then(() => {
+      expect(wrapper.state('books')).toEqual(mockBookData);
     })
-    .catch(error => {
-      console.log('Error: ', error);
-      this.setState({
-        error: true
-      })
-    });
-
-    await wrapper.update();
-    expect(wrapper.state('books').length).toEqual(2);
   });
 });
 
