@@ -5,8 +5,6 @@ import Form from '../components/Form';
 import BookList from '../components/BookList';
 import { mockBookData } from '../utils/mockBookData';
 import BookListItem from '../components/BookListItem';
-import api from '../utils/api';
-
 
 describe('BookSearch', () => {
   let wrapper;  
@@ -108,9 +106,9 @@ describe('successful fetch request', () => {
     // await wrapper.instance().handleFormSubmit(mockEvent);
     // wrapper.update();
     // expect(mockEvent).toHaveBeenCalled();
-
   });
 });
+
 // happy path
 describe('when `books` is defined', () => {
   let wrapper;
