@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Form from './Form';
-import BookList from './BookList';
+import Pagination from './Pagination';
 import api from '../utils/api';
 
 export default class BookSearch extends Component {
@@ -9,12 +9,14 @@ export default class BookSearch extends Component {
     this.state = {
       bookQuery: "",
       books: [],
-      errorMessage:"",
       statusMessage:"No books to display, please enter an author or title.",
-      ajaxErrorCode: ""
+      currentPage: 1,
+      booksPerPage: 9
     }
+
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.handlePageClick = this.handlePageClick.bind(this);
   }
 
 
@@ -47,8 +49,17 @@ export default class BookSearch extends Component {
     }
   }
 
+  handlePageClick = event => {
+    this.setState({
+      currentPage: Number(event.target.id)
+    });
+  }
+
   render = () => {
-    var { books, statusMessage } = this.state;
+    const { books, statusMessage, currentPage, booksPerPage } = this.state;
+    const indexOfFinalMovie = currentPage * booksPerPage;
+    const indexOfFirstMovie = indexOfFinalMovie - booksPerPage;
+
     return (
       <div className="container">
         <h2>Google Books API Search</h2>
@@ -61,8 +72,14 @@ export default class BookSearch extends Component {
           books !== null && !books.length ? (
             <h2>{statusMessage}</h2>
           ) : (
-            <BookList
+            <Pagination 
+              onPageSelect={selectedPage => this.setState({currentPage})}
+              currentPage={currentPage}
+              booksPerPage={booksPerPage}
+              indexOfFinalMovie={indexOfFinalMovie}
+              indexOfFirstMovie={indexOfFirstMovie}
               books={books}
+              handlePageClick={this.handlePageClick}
             />
           )
         }
