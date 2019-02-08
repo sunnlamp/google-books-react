@@ -10,8 +10,7 @@ export default class BookSearch extends Component {
       bookQuery: "",
       books: [],
       errorMessage:"",
-      statusMessage:"No books to display, please enter an author or title.",
-      ajaxErrorCode: ""
+      statusMessage:"No books to display, please enter an author or title."
     }
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
