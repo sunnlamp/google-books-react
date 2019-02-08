@@ -86,18 +86,16 @@ describe('successful fetch request', () => {
     mockBooks = mockBookData;
     window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
       json: () => Promise.resolve({
-        books: mockBooks
+        books: mockBookData
       })
     }));
+    console.log(books);
     wrapper = shallow(<BookSearch />);
   });
 
   it('sets the state of books', async () => {
-    // wrapper.forceUpdate();
-    // wrapper.instance().handleFormSubmit(mockEvent)
-    // .then(() => {
-    //   expect(wrapper.state('books')).toEqual(null);
-    // })
+    await wrapper.update();
+    expect(wrapper.state('books').length).toEqual(2);
   });
 });
 
