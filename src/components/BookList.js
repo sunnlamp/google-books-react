@@ -2,7 +2,7 @@ import React from 'react';
 import BookListItem from './BookListItem';
 import noImageAvailable from '../assets/image-unavailable.jpg';
 
-const BookList = (books) => {
+const BookList = ({ books }) => {
   let author, publisher, smallThumbnail;
   return (
     <div className="books-container">
@@ -18,7 +18,7 @@ const BookList = (books) => {
         smallThumbnail = (book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.smallThumbnail : noImageAvailable)
         return (
           <BookListItem
-            key={book.etag} image
+            key={book.etag}
             id={book.etag}
             author={author}
             title={book.volumeInfo.title}
