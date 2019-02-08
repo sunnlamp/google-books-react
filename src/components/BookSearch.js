@@ -9,8 +9,8 @@ export default class BookSearch extends Component {
     this.state = {
       bookQuery: "",
       books: [],
-      errorMessage:"",
-      statusMessage:"No books to display, please enter an author or title."
+      errorMessage: "",
+      statusMessage: "No books to display, please enter an author or title."
     }
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -21,7 +21,7 @@ export default class BookSearch extends Component {
     const { name, value } = event.target;
     this.setState({
        [name]: value
-    });  
+    });
   }
 
   handleFormSubmit = event => {
@@ -34,6 +34,12 @@ export default class BookSearch extends Component {
         this.setState({
           books: data.items
         })
+      })
+      .catch(err => {
+        this.setState({
+          errorMessage: "The following error has occured: " + err
+        });
+        console.log(err);
       });
     } else {
       this.setState({
@@ -43,10 +49,16 @@ export default class BookSearch extends Component {
   }
 
   render = () => {
-    var { books, statusMessage } = this.state;
+    var { books, statusMessage, errorMessage } = this.state;
     return (
       <div className="container">
-        <h2>Google Books API Search</h2>
+        {
+          errorMessage !== "" ? (
+            <h2>{errorMessage}</h2>
+          ) : (
+            <h2>Google Books API Search</h2>
+          )
+        }
         <Form 
           bookQuery={this.bookQuery}
           inputChange={this.handleInputChange}

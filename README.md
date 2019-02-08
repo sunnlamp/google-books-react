@@ -32,6 +32,12 @@ Or add the following to your .env file:
 BROWSER=none
 ```
 
+And then run:
+```
+yarn start
+```
+as you normally would.
+
 ## Available Scripts
 
 In the project directory, you can run:

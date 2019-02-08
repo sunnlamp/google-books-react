@@ -1,5 +1,5 @@
 export default {
   getBookData: function(query) {
-    return fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=${20}`)
+    return fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=${21}`)
   }
 }
